@@ -14,13 +14,18 @@ const keys = [
     const start = document.getElementById('start_btn');
     const numeri_casuali = [];
     const cols = document.querySelectorAll("div.col");
+    const start_panel = document.getElementById('select_cnt');
+    const question_panel = document.getElementById('question_panel')
     
     //Funzioni principali
     document.getElementById('start_btn').addEventListener("click",play);
     
     function play() {
+
+        generaDomande();
     
         this.removeEventListener("click",play);
+        
     
         //Creo la variabile che mi raccolga il valore del button nell Html//
         let key = document.getElementById("choose_key").value;
@@ -63,7 +68,7 @@ const keys = [
     function generaNumeri() {
         let i = 0
     
-        while(i < 3) {
+        while(i < 4) {
             let num = Math.floor(Math.random()*7);
             if(!numeri_casuali.includes(num)) {
                 numeri_casuali.push(num);
@@ -81,7 +86,14 @@ const keys = [
             cols[i].classList.remove('none');
             for(let i = 0; i < cols.length; i++) {
                 cols[i].innerHTML = `<a href="#"><h1>${keys[0][numeri_casuali[i]]}</h1></a>`;
-            }
-            
+            } 
         }
     }
+
+    function generaDomande () {
+        start_panel.classList.add('none');
+        question_panel.classList.remove('none');
+
+    }
+
+    

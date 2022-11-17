@@ -95,14 +95,14 @@ main {
 }
 
 
-/*.select_cnt {
-    display none una volta scelto
-}*/
-
-#question{
-    display: none;
-    /*display block una volta selezionata la difficoltà*/
+.questions_panel {
+    color: white;
+    display: flex;
 }
+
+.questions_panel 
+
+
 
 /*Footer*/
 footer {
