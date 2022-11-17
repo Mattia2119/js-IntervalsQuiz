@@ -1,0 +1,126 @@
+/* Generals */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: black;
+}
+.white-txt {
+    color: white;
+}
+.md-font {
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+}
+
+a:hover {
+    font-size: 30px;
+    transition: 0.5s;
+}
+
+.none {
+    display: none!important;
+}
+
+/*Header*/
+header {
+    height: 10vh;
+}
+.title-cnt {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quote-cnt {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Main*/
+main {
+    height: 80vh;
+    width: 100%;
+}
+.quiz-cnt {
+    height: 100%;
+    width: 100%;
+    border: 1px solid white;
+}
+.question-cnt {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.answer-cnt {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    
+}
+.row-cnt {
+    height: 100%;
+    width: 100%;
+    border: 1px solid white;
+}
+.row {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.col {
+    border: 1px solid white;
+    height: 60%;
+    width: 20%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*.select_cnt {
+    display none una volta scelto
+}*/
+
+#question{
+    display: none;
+    /*display block una volta selezionata la difficoltà*/
+}
+
+/*Footer*/
+footer {
+    height:10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+footer h4 {
+    margin-right: 20%;
+}
+
+.footer-txt {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
