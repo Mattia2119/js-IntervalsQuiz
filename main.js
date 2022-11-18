@@ -48,24 +48,43 @@ const keys = [
         
         while(i < 20) {
             let rand = Math.floor(Math.random()*6 + 2);
-            interval.push(rand + 'a Maggiore');
+            if (rand == 4 || rand == 5) {
+                interval.push(rand + 'a Giusta');
+            } else {
+                interval.push(rand + 'a Maggiore');
+            }
+            
             i++
         }
 
         if (key == 1) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][0]}?</h3>`;
+            let correctAnswer = keys[0][parseInt(interval[0]) - 1];
+            console.log(correctAnswer); // <---
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][1]}?</h3>`;
+            let correctAnswer = keys[1][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         } else if (key == 3) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][2]}?</h3>`;
+            let correctAnswer = keys[2][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         } else if (key == 4) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][3]}?</h3>`;
+            let correctAnswer = keys[3][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         } else if (key == 5) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][4]}?</h3>`;
+            let correctAnswer = keys[4][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         } else if (key == 6) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][5]}?</h3>`;
+            let correctAnswer = keys[5][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         } else if (key == 7) {
             question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][6]}?</h3>`;
+            let correctAnswer = keys[6][parseInt(interval[0]) - 1];
+            //console.log(correctAnswer);
         }       
 
     }
@@ -85,6 +104,7 @@ const keys = [
                 i++;
             } 
         }
+        console.log(numeri_casuali);
 
         for (let i = 0; i < cols.length; i++) {
             cols[i].classList.remove('none');
