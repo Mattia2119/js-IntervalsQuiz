@@ -31,17 +31,11 @@ a:hover {
 
 /*Header*/
 header {
-    height: 10vh;
+    height: 10%;
+    padding-top: 30px;
 }
 .title-cnt {
     height: 60%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.quote-cnt {
-    height: 40%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -56,7 +50,6 @@ main {
 .quiz-cnt {
     height: 100%;
     width: 100%;
-    border: 1px solid white;
 }
 .question-cnt {
     height: 20%;
@@ -74,7 +67,6 @@ main {
 .row-cnt {
     height: 100%;
     width: 100%;
-    border: 1px solid white;
 }
 .row {
     height: 100%;
@@ -94,13 +86,22 @@ main {
     align-items: center;
 }
 
+.col:hover {
+    background-color:darkgrey;
+    cursor: pointer;
+}
+
 
 .questions_panel {
     color: white;
     display: flex;
 }
 
-.questions_panel 
+.questions_panel button {
+    margin-left: 20px;
+    width: 80px;
+    font-size: 14px;
+}
 
 
 

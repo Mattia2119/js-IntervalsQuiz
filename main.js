@@ -1,66 +1,41 @@
 //Variabili
 
 const keys = [
-    /*C*/   ['C','D','E','F','G','A','B'], 
-    /*D*/   ['D','E','F#','G','A','B','C#'],
-    /*E*/   ['E','F#','G#','A','B','C#','D#'],
-    /*F*/   ['F','G','A','Bb','C','D','E'],
-    /*G*/   ['G','A','B','C','D','E','F#'],
-    /*A*/   ['A','B','C#','D','E','F#','G#'],
-    /*B*/   ['B','C#','D#','E','F#','G#','A#'],
-            ];
+        ['C','D','E','F','G','A','B'], 
+        ['D','E','F#','G','A','B','C#'],
+        ['E','F#','G#','A','B','C#','D#'],
+        ['F','G','A','Bb','C','D','E'],
+        ['G','A','B','C','D','E','F#'],
+        ['A','B','C#','D','E','F#','G#'],
+        ['B','C#','D#','E','F#','G#','A#'],
+   ];
     
     const campo = document.getElementById('row');
     const start = document.getElementById('start_btn');
     const numeri_casuali = [];
     const cols = document.querySelectorAll("div.col");
     const start_panel = document.getElementById('select_cnt');
-    const question_panel = document.getElementById('question_panel')
+    const question_panel = document.getElementById('question_panel');
+    let interval = [];
     
-    //Funzioni principali
+    //Logica Applicativa
     document.getElementById('start_btn').addEventListener("click",play);
     
     function play() {
-
-        generaDomande();
     
         this.removeEventListener("click",play);
         
-    
-        //Creo la variabile che mi raccolga il valore del button nell Html//
         let key = document.getElementById("choose_key").value;
-        console.log(key);
-    
-        //imposto con delle istruzioni condizionali, l'array di tonalità
-        //in relazione alla scelta dell'utente
-        if(key == 1) {
-            let choosed_key = keys[0];
-            console.log(choosed_key);
-        } else if (key == 2) {
-            let choosed_key = keys[1];
-            console.log(choosed_key);
-        } else if (key == 3) {
-            let choosed_key = keys[2];
-            console.log(choosed_key);
-        } else if (key == 4) {
-            let choosed_key = keys[3];
-            console.log(choosed_key);
-        } else if (key == 5) {
-            let choosed_key = keys[4];
-            console.log(choosed_key);
-        } else if (key == 6) {
-            let choosed_key = keys[5];
-            console.log(choosed_key);
-        } else if (key == 7) {
-            let choosed_key = keys[6];
-            console.log(choosed_key);
-        }
+
+        generaDomande(key);
     
         generaNumeri();
     
         generaRows();
     
     }
+
+    //Funzioni
     
     //La funzione genera 4 numeri casuali compresi tra 0 e 7
     //che saranno le nostre opzioni che l'utente potrà
@@ -73,12 +48,8 @@ const keys = [
             if(!numeri_casuali.includes(num)) {
                 numeri_casuali.push(num);
                 i++;
-                console.log(num)
             } 
         }
-    
-        console.log(numeri_casuali);
-        
     }
     
     function generaRows() {
@@ -90,9 +61,34 @@ const keys = [
         }
     }
 
-    function generaDomande () {
+    function generaDomande(key) {
         start_panel.classList.add('none');
         question_panel.classList.remove('none');
+        
+        let i = 0;
+        
+        while(i < 20) {
+            let rand = Math.floor(Math.random()*6 + 2);
+            interval.push(rand + 'a Maggiore');
+            console.log(interval);
+            i++
+        }
+
+        if (key == 1) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][0]}?</h3>`;
+        } else if (key == 2) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][1]}?</h3>`;
+        } else if (key == 3) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][2]}?</h3>`;
+        } else if (key == 4) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][3]}?</h3>`;
+        } else if (key == 5) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][4]}?</h3>`;
+        } else if (key == 6) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][5]}?</h3>`;
+        } else if (key == 7) {
+            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][6]}?</h3>`;
+        }       
 
     }
 
