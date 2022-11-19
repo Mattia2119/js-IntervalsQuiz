@@ -20,6 +20,7 @@ const keys = [
     let correctAnswerPosition;
     
     //LOGICA APPLICATIVA
+
     document.getElementById('start_btn').addEventListener("click",play);
     
     function play() {
@@ -40,6 +41,7 @@ const keys = [
     //genera venti numeri casuali compresi tra 1 e 7 e li pusha nell'array (interval) concatenandogli la stringa 'Maggiore'
     //Dopodiché con la struttura di controllo (if/else if) farò in modo di far combaciare la chiave sceltà dall'utente
     //con la domanda casuale relativa a quella specifica tonalità.
+
     function generaDomande(key) {
         start_panel.classList.add('none');
         question_panel.classList.remove('none');
@@ -103,6 +105,7 @@ const keys = [
     //nel primo campo condizionale verifica che all'interno dell'array di numeri casuali, 
     //sia presente la risposta corretta, se non presente, la inserisce al posto di uno tra i 4 valori generati
     //casualmente dal campo while.
+    
     function generaRows(correctAnswerPosition,key) {
         let i = 0
     
