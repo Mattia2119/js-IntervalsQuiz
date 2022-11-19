@@ -1,4 +1,4 @@
-//Variabili
+//VARIABILI
 
 const keys = [
         ['C','D','E','F','G','A','B'], 
@@ -18,7 +18,7 @@ const keys = [
     const question_panel = document.getElementById('question_panel');
     let interval = [];
     
-    //Logica Applicativa
+    //LOGICA APPLICATIVA
     document.getElementById('start_btn').addEventListener("click",play);
     
     function play() {
@@ -33,8 +33,7 @@ const keys = [
     
     }
 
-    //Funzioni
-    
+    //FUNZIONI
     //La funzione accetta un parametro in ingresso, che corrisponderà alla (key) tonalità scelta dall'utente
     //aggiune la classe none al pannello di selezione della chiave e rende visibile la domanda
     //genera venti numeri casuali compresi tra 1 e 7 e li pusha nell'array (interval) concatenandogli la stringa 'Maggiore'
@@ -58,33 +57,33 @@ const keys = [
         }
 
         if (key == 1) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][0]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][0]}?</h3>`;
             let correctAnswer = keys[0][parseInt(interval[0]) - 1];
             console.log(correctAnswer); // <---
         } else if (key == 2) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][1]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
             let correctAnswer = keys[1][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         } else if (key == 3) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][2]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             let correctAnswer = keys[2][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         } else if (key == 4) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][3]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
             let correctAnswer = keys[3][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         } else if (key == 5) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][4]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
             let correctAnswer = keys[4][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         } else if (key == 6) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][5]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
             let correctAnswer = keys[5][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         } else if (key == 7) {
-            question_panel.innerHTML = `<h3>Qual'è la ${interval[0]} di ${keys[0][6]}?</h3>`;
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
             let correctAnswer = keys[6][parseInt(interval[0]) - 1];
-            //console.log(correctAnswer);
+            console.log(correctAnswer);
         }       
 
     }
