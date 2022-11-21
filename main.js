@@ -1,13 +1,13 @@
 //VARIABILI
 
 const keys = [
-        ['C','D','E','F','G','A','B'], 
-        ['D','E','F#','G','A','B','C#'],
-        ['E','F#','G#','A','B','C#','D#'],
-        ['F','G','A','Bb','C','D','E'],
-        ['G','A','B','C','D','E','F#'],
-        ['A','B','C#','D','E','F#','G#'],
-        ['B','C#','D#','E','F#','G#','A#'],
+        ['1°','C','D','E','F','G','A','B'], 
+        ['2°','D','E','F#','G','A','B','C#'],
+        ['3°','E','F#','G#','A','B','C#','D#'],
+        ['4°','F','G','A','Bb','C','D','E'],
+        ['5°','G','A','B','C','D','E','F#'],
+        ['6°','A','B','C#','D','E','F#','G#'],
+        ['7°','B','C#','D#','E','F#','G#','A#'],
    ];
     
     const campo = document.getElementById('row');
@@ -39,6 +39,7 @@ const keys = [
         }
 
         console.log(cols);
+        console.log(numeri_casuali);
 
         
     
@@ -55,8 +56,7 @@ const keys = [
       } else {
         for (let i = 0; i < cols.length; i++) {
             this.classList.add('wrong');
-            cols[i].removeEventListener('click',mostraSelezioni);
-            //problema qui
+            cols[i].removeEventListener('click',mostraSelezioni);   
         }
       }
     }
@@ -86,40 +86,40 @@ const keys = [
         }
 
         if (key == 1) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][0]}?</h3>`;
-            correctAnswer = keys[0][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
+            correctAnswer = keys[0][parseInt(interval[0])];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
             console.log(correctAnswer);
             console.log(correctAnswerPosition);
 
         } else if (key == 2) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
-            let correctAnswer = keys[1][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
+            let correctAnswer = keys[1][parseInt(interval[0])];
             correctAnswerPosition = keys[1].indexOf(correctAnswer); 
 
         } else if (key == 3) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
-            let correctAnswer = keys[2][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
+            let correctAnswer = keys[2][parseInt(interval[0])];
             correctAnswerPosition = keys[2].indexOf(correctAnswer); 
 
         } else if (key == 4) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
-            let correctAnswer = keys[3][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
+            let correctAnswer = keys[3][parseInt(interval[0])];
             correctAnswerPosition = keys[3].indexOf(correctAnswer); 
 
         } else if (key == 5) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
-            let correctAnswer = keys[4][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
+            let correctAnswer = keys[4][parseInt(interval[0])];
             correctAnswerPosition = keys[4].indexOf(correctAnswer); 
 
         } else if (key == 6) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
-            let correctAnswer = keys[5][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
+            let correctAnswer = keys[5][parseInt(interval[0])];
             correctAnswerPosition = keys[5].indexOf(correctAnswer); 
 
         } else if (key == 7) {
-            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
-            let correctAnswer = keys[6][parseInt(interval[0]) - 1];
+            question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][7]}?</h3>`;
+            let correctAnswer = keys[6][parseInt(interval[0])];
             correctAnswerPosition = keys[6].indexOf(correctAnswer); 
         }   
 
@@ -138,7 +138,7 @@ const keys = [
         let i = 0
     
         while(i < 4) {
-            let num = Math.floor(Math.random()*7);
+            let num = Math.floor(Math.random()*7 + 1);
             if(!numeri_casuali.includes(num)) {
                 numeri_casuali.push(num);
                 i++;
@@ -146,7 +146,7 @@ const keys = [
         }
         if (!numeri_casuali.includes(correctAnswerPosition)) {
             for (let i = 0; i < 1; i++) {
-                let num = Math.floor(Math.random()*3);
+                let num = Math.floor(Math.random()*3 + 1);
                 numeri_casuali.splice(num,1,correctAnswerPosition);
             }
         }
