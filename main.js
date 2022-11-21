@@ -41,8 +41,6 @@ const keys = [
         console.log(cols);
         console.log(numeri_casuali);
 
-        
-    
     }
 
     function mostraSelezioni() {
@@ -56,7 +54,9 @@ const keys = [
       } else {
         for (let i = 0; i < cols.length; i++) {
             this.classList.add('wrong');
-            cols[i].removeEventListener('click',mostraSelezioni);   
+            cols[i].removeEventListener('click',mostraSelezioni);  
+            //problema qui, mi occorrerebbe la posizione della risposta corretta 
+            //nella nodeList, cols...devo trovare un metodo.  
         }
       }
     }
