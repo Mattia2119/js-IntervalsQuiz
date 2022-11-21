@@ -94,32 +94,34 @@ const keys = [
 
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
-            let correctAnswer = keys[1][parseInt(interval[0])];
+            correctAnswer = keys[1][parseInt(interval[0])];
             correctAnswerPosition = keys[1].indexOf(correctAnswer); 
+            console.log(correctAnswer);
+            console.log(correctAnswerPosition);
 
         } else if (key == 3) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
-            let correctAnswer = keys[2][parseInt(interval[0])];
+            correctAnswer = keys[2][parseInt(interval[0])];
             correctAnswerPosition = keys[2].indexOf(correctAnswer); 
 
         } else if (key == 4) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
-            let correctAnswer = keys[3][parseInt(interval[0])];
+            correctAnswer = keys[3][parseInt(interval[0])];
             correctAnswerPosition = keys[3].indexOf(correctAnswer); 
 
         } else if (key == 5) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
-            let correctAnswer = keys[4][parseInt(interval[0])];
+            correctAnswer = keys[4][parseInt(interval[0])];
             correctAnswerPosition = keys[4].indexOf(correctAnswer); 
 
         } else if (key == 6) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
-            let correctAnswer = keys[5][parseInt(interval[0])];
+            correctAnswer = keys[5][parseInt(interval[0])];
             correctAnswerPosition = keys[5].indexOf(correctAnswer); 
 
         } else if (key == 7) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][7]}?</h3>`;
-            let correctAnswer = keys[6][parseInt(interval[0])];
+            correctAnswer = keys[6][parseInt(interval[0])];
             correctAnswerPosition = keys[6].indexOf(correctAnswer); 
         }   
 
