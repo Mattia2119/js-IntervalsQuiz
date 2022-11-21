@@ -29,6 +29,14 @@ a:hover {
     display: none!important;
 }
 
+.right {
+    background-color: green!important;
+}
+
+.wrong {
+    background-color: red!important;
+}
+
 /*Header*/
 header {
     height: 10%;
@@ -78,7 +86,7 @@ main {
 }
 .col {
     border: 1px solid white;
-    height: 60%;
+    height: 80%;
     width: 20%;
     background-color: grey;
     display: flex;

@@ -18,22 +18,49 @@ const keys = [
     const question_panel = document.getElementById('question_panel');
     let interval = [];
     let correctAnswerPosition;
-    
+    let correctAnswer;
+      
     //LOGICA APPLICATIVA
 
     document.getElementById('start_btn').addEventListener("click",play);
     
     function play() {
+
+        let key = document.getElementById("choose_key").value;
     
         this.removeEventListener("click",play);
-        
-        let key = document.getElementById("choose_key").value;
 
         generaDomande(key);
     
         generaRows(correctAnswerPosition,key);
+
+        for(let i = 0; i < cols.length; i++) {
+            cols[i].addEventListener('click', mostraSelezioni);
+        }
+
+        console.log(cols);
+
+        
     
     }
+
+    function mostraSelezioni() {
+     if (this.innerText == correctAnswer) {
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].classList.add('wrong');
+            cols[i].removeEventListener('click',mostraSelezioni);
+        }
+        this.classList.remove('wrong');
+        this.classList.add('right');
+      } else {
+        for (let i = 0; i < cols.length; i++) {
+            this.classList.add('wrong');
+            cols[i].removeEventListener('click',mostraSelezioni);
+            //problema qui
+        }
+      }
+    }
+
 
     //FUNZIONI
     //La funzione accetta un parametro in ingresso, che corrisponderà alla (key) tonalità scelta dall'utente
@@ -54,15 +81,16 @@ const keys = [
                 interval.push(rand + 'a Giusta');
             } else {
                 interval.push(rand + 'a Maggiore');
-            }
-            
+            }  
             i++
         }
 
         if (key == 1) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][0]}?</h3>`;
-            let correctAnswer = keys[0][parseInt(interval[0]) - 1];
+            correctAnswer = keys[0][parseInt(interval[0]) - 1];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
+            console.log(correctAnswer);
+            console.log(correctAnswerPosition);
 
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
@@ -105,7 +133,7 @@ const keys = [
     //nel primo campo condizionale verifica che all'interno dell'array di numeri casuali, 
     //sia presente la risposta corretta, se non presente, la inserisce al posto di uno tra i 4 valori generati
     //casualmente dal campo while.
-    
+
     function generaRows(correctAnswerPosition,key) {
         let i = 0
     
@@ -142,10 +170,6 @@ const keys = [
             }
             
         }
-    }
-
-    function verificaRisposta() {
-
     }
 
     
