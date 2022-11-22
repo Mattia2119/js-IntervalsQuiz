@@ -73,8 +73,7 @@ const keys = [
         start_panel.classList.add('none');
         question_panel.classList.remove('none');
         
-        let i = 0;
-        
+        let i = 0;     
         while(i < 20) {
             let rand = Math.floor(Math.random()*6 + 2);
             if (rand == 4 || rand == 5) {
@@ -84,52 +83,42 @@ const keys = [
             }  
             i++
         }
-
         if (key == 1) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
             correctAnswer = keys[0][parseInt(interval[0])];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
-
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             correctAnswer = keys[1][parseInt(interval[0])];
             correctAnswerPosition = keys[1].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
-
         } else if (key == 3) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
             correctAnswer = keys[2][parseInt(interval[0])];
             correctAnswerPosition = keys[2].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
         } else if (key == 4) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
             correctAnswer = keys[3][parseInt(interval[0])];
             correctAnswerPosition = keys[3].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
         } else if (key == 5) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
             correctAnswer = keys[4][parseInt(interval[0])];
             correctAnswerPosition = keys[4].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
         } else if (key == 6) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
             correctAnswer = keys[5][parseInt(interval[0])];
             correctAnswerPosition = keys[5].indexOf(correctAnswer); 
             console.log(correctAnswer);
-
         } else if (key == 7) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][7]}?</h3>`;
             correctAnswer = keys[6][parseInt(interval[0])];
             correctAnswerPosition = keys[6].indexOf(correctAnswer); 
             console.log(correctAnswer);
         }   
-
     }
   
     //La funzione genera 4 numeri casuali compresi tra 0 e 7
@@ -143,7 +132,6 @@ const keys = [
 
     function generaRows(correctAnswerPosition,key) {
         let i = 0
-    
         while(i < 4) {
             let num = Math.floor(Math.random()*7 + 1);
             if(!numeri_casuali.includes(num)) {
@@ -157,7 +145,6 @@ const keys = [
                 numeri_casuali.splice(num,1,correctAnswerPosition);
             }
         }
-
         for (let i = 0; i < cols.length; i++) {
             cols[i].classList.remove('none');
             if (key == 1) {
@@ -174,8 +161,7 @@ const keys = [
                 cols[i].innerHTML = `<a href="#"><h1>${keys[5][numeri_casuali[i]]}</h1></a>`;
             } else if (key == 7) {
                 cols[i].innerHTML = `<a href="#"><h1>${keys[6][numeri_casuali[i]]}</h1></a>`;
-            }
-            
+            }   
         }
     }
 
