@@ -19,6 +19,7 @@ const keys = [
     let interval = [];
     let correctAnswerPosition;
     let correctAnswer;
+    let correctAnswerPosition_inDom;
       
     //LOGICA APPLICATIVA
 
@@ -34,12 +35,11 @@ const keys = [
     
         generaRows(correctAnswerPosition,key);
 
+        correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
+
         for(let i = 0; i < cols.length; i++) {
             cols[i].addEventListener('click', mostraSelezioni);
         }
-
-        console.log(cols);
-        console.log(numeri_casuali);
 
     }
 
@@ -53,10 +53,10 @@ const keys = [
         this.classList.add('right');
       } else {
         for (let i = 0; i < cols.length; i++) {
-            this.classList.add('wrong');
+            cols[i].classList.add('wrong');
             cols[i].removeEventListener('click',mostraSelezioni);  
-            //problema qui, mi occorrerebbe la posizione della risposta corretta 
-            //nella nodeList, cols...devo trovare un metodo.  
+            cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
+            cols.item(correctAnswerPosition_inDom).classList.add('right');
         }
       }
     }
@@ -90,39 +90,44 @@ const keys = [
             correctAnswer = keys[0][parseInt(interval[0])];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
             console.log(correctAnswer);
-            console.log(correctAnswerPosition);
+
 
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             correctAnswer = keys[1][parseInt(interval[0])];
             correctAnswerPosition = keys[1].indexOf(correctAnswer); 
             console.log(correctAnswer);
-            console.log(correctAnswerPosition);
+
 
         } else if (key == 3) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
             correctAnswer = keys[2][parseInt(interval[0])];
             correctAnswerPosition = keys[2].indexOf(correctAnswer); 
+            console.log(correctAnswer);
 
         } else if (key == 4) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
             correctAnswer = keys[3][parseInt(interval[0])];
             correctAnswerPosition = keys[3].indexOf(correctAnswer); 
+            console.log(correctAnswer);
 
         } else if (key == 5) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
             correctAnswer = keys[4][parseInt(interval[0])];
             correctAnswerPosition = keys[4].indexOf(correctAnswer); 
+            console.log(correctAnswer);
 
         } else if (key == 6) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
             correctAnswer = keys[5][parseInt(interval[0])];
             correctAnswerPosition = keys[5].indexOf(correctAnswer); 
+            console.log(correctAnswer);
 
         } else if (key == 7) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][7]}?</h3>`;
             correctAnswer = keys[6][parseInt(interval[0])];
             correctAnswerPosition = keys[6].indexOf(correctAnswer); 
+            console.log(correctAnswer);
         }   
 
     }
