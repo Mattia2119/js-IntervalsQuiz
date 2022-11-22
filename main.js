@@ -121,9 +121,9 @@ const keys = [
         }   
     }
   
-    //La funzione genera 4 numeri casuali compresi tra 0 e 7
+    //La funzione genera 4 numeri casuali compresi tra 1 e 7
     //che farò combaciare (nella funzione generaRows) 
-    //con la posizione nell'array keys della chiave selezionata dall'utente.
+    //con la posizione nell'array keys (che ho di proposito fatto partire da 1) della chiave selezionata dall'utente.
     //scorre la lunghezza dell'array restituito dagli elementi cols nell'HTML,
     //li rende visibili rimuovendo la classe none, e inietta l'html (a/h1) nel dom.
     //nel primo campo condizionale verifica che all'interno dell'array di numeri casuali, 
