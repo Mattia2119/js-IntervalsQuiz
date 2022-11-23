@@ -119,17 +119,19 @@ footer {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: end;
-}
-
-footer h4 {
-    margin-right: 20%;
+    justify-content: space-between;
 }
 
 .footer-txt {
-    width: 10%;
+    width: 8%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 2%;
+}
+
+.question_number {
+    margin-left: 2%;
+    width: 8%;
 }

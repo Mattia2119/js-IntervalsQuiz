@@ -16,10 +16,12 @@ const keys = [
     const cols = document.querySelectorAll("div.col");
     const start_panel = document.getElementById('select_cnt');
     const question_panel = document.getElementById('question_panel');
+    const question_number = document.getElementById('question_number');
     let interval = [];
     let correctAnswerPosition;
     let correctAnswer;
     let correctAnswerPosition_inDom;
+    let questionNumber = 1;
       
     //LOGICA APPLICATIVA
 
@@ -29,7 +31,7 @@ const keys = [
 
         let key = document.getElementById("choose_key").value;
     
-        this.removeEventListener("click",play);
+        question_number.innerHTML += `${questionNumber}/20`;
 
         generaDomande(key);
     
@@ -39,29 +41,11 @@ const keys = [
 
         for(let i = 0; i < cols.length; i++) {
             cols[i].addEventListener('click', mostraSelezioni);
-        }
-
+        }  
+        
     }
 
-    function mostraSelezioni() {
-     if (this.innerText == correctAnswer) {
-        for (let i = 0; i < cols.length; i++) {
-            cols[i].classList.add('wrong');
-            cols[i].removeEventListener('click',mostraSelezioni);
-        }
-        this.classList.remove('wrong');
-        this.classList.add('right');
-      } else {
-        for (let i = 0; i < cols.length; i++) {
-            cols[i].classList.add('wrong');
-            cols[i].removeEventListener('click',mostraSelezioni);  
-            cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
-            cols.item(correctAnswerPosition_inDom).classList.add('right');
-        }
-      }
-    }
-
-
+   
     //FUNZIONI
     //La funzione accetta un parametro in ingresso, che corrisponderà alla (key) tonalità scelta dall'utente
     //aggiune la classe none al pannello di selezione della chiave e rende visibile la domanda
@@ -74,7 +58,7 @@ const keys = [
         question_panel.classList.remove('none');
         
         let i = 0;     
-        while(i < 20) {
+        while(i < 1) {
             let rand = Math.floor(Math.random()*6 + 2);
             if (rand == 4 || rand == 5) {
                 interval.push(rand + 'a Giusta');
@@ -164,5 +148,65 @@ const keys = [
             }   
         }
     }
+
+    //La funzione entra nel campo condizionale, per cui se l'utente seleziona la risposta corretta, 
+    //aggiungo alla casella selezionata un background color verde, ed alle incorrette un rosso.
+    //E stesso risultato anche nella situazione inversa. Nel caso in cui l'utente selezioni la 
+    //risposta corretta il valore di score verrà aumentato di 1, nel caso contrario di 0.
+    //Una timing function porterà (dopo 3 secondi) l'utente alla domanda successiva. 
+
+    function mostraSelezioni(col,key) {
+        if (this.innerText == correctAnswer) {
+            //incremento del valore di numero di domande complessive
+            
+            setTimeout(function() {
+                alert('risposta esatta!')
+                for (let i = 0; i < cols.length; i++) {
+                    cols[i].classList.remove('right');
+                    cols[i].classList.remove('wrong');
+                    cols[i].innerHTML = '';
+                    question_number.innerHTML = `${questionNumber + 1}/20`;  
+                }
+                question_panel.innerHTML = '';
+                //qui devo far apparire un button che faccia ripartire tutto a condizione che 
+                //il valore di score sia inferiore di 20
+                // se invece il valore è superiore farò apparire un bottone di reset che faccia ripartire
+                // la funzione play.
+               }, 1000);
+           for (let i = 0; i < cols.length; i++) {
+               cols[i].classList.add('wrong');
+               cols[i].removeEventListener('click',mostraSelezioni);
+            }
+           this.classList.remove('wrong');
+           this.classList.add('right');
+        } else {
+            
+            setTimeout(function() {
+                alert('risposta sbagliata!')
+                for (let i = 0; i < cols.length; i++) {
+                    cols[i].classList.remove('right');
+                    cols[i].classList.remove('wrong');
+                    cols[i].innerHTML = '';
+                    question_number.innerHTML = `${questionNumber + 1}/20`;
+                }
+                question_panel.innerHTML = '';
+               }, 1000);
+           for (let i = 0; i < cols.length; i++) {
+               cols[i].classList.add('wrong');
+               cols[i].removeEventListener('click',mostraSelezioni);  
+               cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
+               cols.item(correctAnswerPosition_inDom).classList.add('right');
+               //timing function per azzerare i valori
+            }
+        }
+    }
+    
+    function nextQuestion() {
+        
+    }
+
+
+
+
 
     
