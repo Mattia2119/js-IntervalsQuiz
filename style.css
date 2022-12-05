@@ -111,6 +111,11 @@ main {
     font-size: 14px;
 }
 
+#next {
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 
 /*Footer*/

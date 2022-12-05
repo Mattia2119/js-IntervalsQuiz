@@ -12,16 +12,19 @@ const keys = [
     
     const campo = document.getElementById('row');
     const start = document.getElementById('start_btn');
-    const numeri_casuali = [];
     const cols = document.querySelectorAll("div.col");
     const start_panel = document.getElementById('select_cnt');
     const question_panel = document.getElementById('question_panel');
     const question_number = document.getElementById('question_number');
+    const next = document.getElementById('next');
+    let numeri_casuali = [];
     let interval = [];
     let correctAnswerPosition;
     let correctAnswer;
     let correctAnswerPosition_inDom;
     let questionNumber = 1;
+    let key;
+    let currentKey;
       
     //LOGICA APPLICATIVA
 
@@ -39,9 +42,16 @@ const keys = [
 
         correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
 
+        currentKey = key;
+
         for(let i = 0; i < cols.length; i++) {
             cols[i].addEventListener('click', mostraSelezioni);
         }  
+
+        
+
+        
+
         
     }
 
@@ -49,7 +59,7 @@ const keys = [
     //FUNZIONI
     //La funzione accetta un parametro in ingresso, che corrisponderà alla (key) tonalità scelta dall'utente
     //aggiune la classe none al pannello di selezione della chiave e rende visibile la domanda
-    //genera venti numeri casuali compresi tra 1 e 7 e li pusha nell'array (interval) concatenandogli la stringa 'Maggiore'
+    //genera un numero casuale compreso tra 1 e 7 e li pusha nell'array (interval) concatenandogli la stringa 'Maggiore'
     //Dopodiché con la struttura di controllo (if/else if) farò in modo di far combaciare la chiave sceltà dall'utente
     //con la domanda casuale relativa a quella specifica tonalità.
 
@@ -155,24 +165,27 @@ const keys = [
     //risposta corretta il valore di score verrà aumentato di 1, nel caso contrario di 0.
     //Una timing function porterà (dopo 3 secondi) l'utente alla domanda successiva. 
 
-    function mostraSelezioni(col,key) {
+    function mostraSelezioni() {
         if (this.innerText == correctAnswer) {
             //incremento del valore di numero di domande complessive
             
             setTimeout(function() {
-                alert('risposta esatta!')
                 for (let i = 0; i < cols.length; i++) {
-                    cols[i].classList.remove('right');
-                    cols[i].classList.remove('wrong');
-                    cols[i].innerHTML = '';
                     question_number.innerHTML = `${questionNumber + 1}/20`;  
                 }
-                question_panel.innerHTML = '';
+                if (questionNumber < 20) {
+                    question_panel.classList.add('none');
+                    next.classList.remove('none');
+                    next.addEventListener('click',prossimaDomanda);
+
+                } else {
+                    alert('Complimenti sei arrivato alla fine del gioco!')
+                }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
                 //il valore di score sia inferiore di 20
                 // se invece il valore è superiore farò apparire un bottone di reset che faccia ripartire
                 // la funzione play.
-               }, 1000);
+               }, 100);
            for (let i = 0; i < cols.length; i++) {
                cols[i].classList.add('wrong');
                cols[i].removeEventListener('click',mostraSelezioni);
@@ -184,13 +197,9 @@ const keys = [
             setTimeout(function() {
                 alert('risposta sbagliata!')
                 for (let i = 0; i < cols.length; i++) {
-                    cols[i].classList.remove('right');
-                    cols[i].classList.remove('wrong');
-                    cols[i].innerHTML = '';
                     question_number.innerHTML = `${questionNumber + 1}/20`;
                 }
-                question_panel.innerHTML = '';
-               }, 1000);
+               }, 100);
            for (let i = 0; i < cols.length; i++) {
                cols[i].classList.add('wrong');
                cols[i].removeEventListener('click',mostraSelezioni);  
@@ -200,9 +209,35 @@ const keys = [
             }
         }
     }
-    
-    function nextQuestion() {
-        
+
+    function prossimaDomanda() {
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].innerHTML = '';
+            cols[i].classList.remove('right');
+            cols[i].classList.remove('wrong');
+            cols[i].classList.add('none');
+            next.classList.add('none');   
+        }  
+
+        key = currentKey;
+
+        question_panel.innerHTML = '';
+        numeri_casuali = [];
+        interval = [];
+        correctAnswer = '';
+        correctAnswerPosition = 0;
+               
+        generaDomande(key);
+
+        correctAnswer = keys[0][parseInt(interval[0])];
+        correctAnswerPosition = keys[0].indexOf(correctAnswer);
+
+        generaRows(correctAnswerPosition,key);
+
+        for(let i = 0; i < cols.length; i++) {
+            cols[i].addEventListener('click', mostraSelezioni);
+        }
+
     }
 
 
