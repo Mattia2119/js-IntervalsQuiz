@@ -40,8 +40,6 @@ const keys = [
     
         generaRows(correctAnswerPosition,key);
 
-        correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
-
         currentKey = key;
 
         for(let i = 0; i < cols.length; i++) {
@@ -82,6 +80,7 @@ const keys = [
             correctAnswer = keys[0][parseInt(interval[0])];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
             console.log(correctAnswer);
+            console.log(correctAnswerPosition);
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             correctAnswer = keys[1][parseInt(interval[0])];
@@ -166,17 +165,18 @@ const keys = [
     //Una timing function porterà (dopo 3 secondi) l'utente alla domanda successiva. 
 
     function mostraSelezioni() {
-        if (this.innerText == correctAnswer) {
-            //incremento del valore di numero di domande complessive
-            
+
+        correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
+    
+        if (this.innerText == correctAnswer) {  
             setTimeout(function() {
-                for (let i = 0; i < cols.length; i++) {
-                    question_number.innerHTML = `${questionNumber + 1}/20`;  
-                }
+                
                 if (questionNumber < 20) {
                     question_panel.classList.add('none');
                     next.classList.remove('none');
                     next.addEventListener('click',prossimaDomanda);
+                    questionNumber++;
+                    next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
 
                 } else {
                     alert('Complimenti sei arrivato alla fine del gioco!')
@@ -192,13 +192,14 @@ const keys = [
             }
            this.classList.remove('wrong');
            this.classList.add('right');
-        } else {
-            
+
+        } else {  
             setTimeout(function() {
-                alert('risposta sbagliata!')
-                for (let i = 0; i < cols.length; i++) {
-                    question_number.innerHTML = `${questionNumber + 1}/20`;
-                }
+                question_panel.classList.add('none');
+                next.classList.remove('none');
+                next.addEventListener('click',prossimaDomanda);
+                questionNumber++;
+                next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});               
                }, 100);
            for (let i = 0; i < cols.length; i++) {
                cols[i].classList.add('wrong');
@@ -211,6 +212,7 @@ const keys = [
     }
 
     function prossimaDomanda() {
+        
         for (let i = 0; i < cols.length; i++) {
             cols[i].innerHTML = '';
             cols[i].classList.remove('right');
@@ -220,7 +222,6 @@ const keys = [
         }  
 
         key = currentKey;
-
         question_panel.innerHTML = '';
         numeri_casuali = [];
         interval = [];
