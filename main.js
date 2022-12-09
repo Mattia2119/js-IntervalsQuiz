@@ -22,9 +22,9 @@ const keys = [
     let correctAnswerPosition;
     let correctAnswer;
     let correctAnswerPosition_inDom;
-    let questionNumber = 1;
     let key;
     let currentKey;
+    let questionNumber = 1;
       
     //LOGICA APPLICATIVA
 
@@ -32,9 +32,9 @@ const keys = [
     
     function play() {
 
+        question_number.innerHTML = `${questionNumber}/20`;
+
         let key = document.getElementById("choose_key").value;
-    
-        question_number.innerHTML += `${questionNumber}/20`;
 
         generaDomande(key);
     
@@ -45,15 +45,9 @@ const keys = [
         for(let i = 0; i < cols.length; i++) {
             cols[i].addEventListener('click', mostraSelezioni);
         }  
-
-        
-
-        
-
         
     }
 
-   
     //FUNZIONI
     //La funzione accetta un parametro in ingresso, che corrisponderà alla (key) tonalità scelta dall'utente
     //aggiune la classe none al pannello di selezione della chiave e rende visibile la domanda
@@ -80,7 +74,6 @@ const keys = [
             correctAnswer = keys[0][parseInt(interval[0])];
             correctAnswerPosition = keys[0].indexOf(correctAnswer); 
             console.log(correctAnswer);
-            console.log(correctAnswerPosition);
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             correctAnswer = keys[1][parseInt(interval[0])];
@@ -167,19 +160,26 @@ const keys = [
     function mostraSelezioni() {
 
         correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
+        console.log(questionNumber);
     
         if (this.innerText == correctAnswer) {  
             setTimeout(function() {
                 
-                if (questionNumber < 20) {
+                if (questionNumber < 3) {
                     question_panel.classList.add('none');
                     next.classList.remove('none');
                     next.addEventListener('click',prossimaDomanda);
                     questionNumber++;
                     next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
-
-                } else {
-                    alert('Complimenti sei arrivato alla fine del gioco!')
+                } else if (questionNumber > 2) {
+                    question_panel.classList.add('none');
+                    for (let i = 0; i < cols.length; i++) {
+                        cols[i].classList.add('none');
+                    }
+                    next.classList.add('none');
+                    question_number.classList.add('none');
+                    start_panel.classList.remove('none');
+                    alert('Complimenti sei arrivato all fine del gioco!');            
                 }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
                 //il valore di score sia inferiore di 20
@@ -194,20 +194,31 @@ const keys = [
            this.classList.add('right');
 
         } else {  
-            setTimeout(function() {
+            if (questionNumber < 3) {
+                setTimeout(function() {
+                    question_panel.classList.add('none');
+                    next.classList.remove('none');
+                    next.addEventListener('click',prossimaDomanda);
+                    questionNumber++;
+                    next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});               
+                   }, 100);
+               for (let i = 0; i < cols.length; i++) {
+                   cols[i].classList.add('wrong');
+                   cols[i].removeEventListener('click',mostraSelezioni);  
+                   cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
+                   cols.item(correctAnswerPosition_inDom).classList.add('right');
+                }
+            } else if (questionNumber > 2) {
                 question_panel.classList.add('none');
-                next.classList.remove('none');
-                next.addEventListener('click',prossimaDomanda);
-                questionNumber++;
-                next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});               
-               }, 100);
-           for (let i = 0; i < cols.length; i++) {
-               cols[i].classList.add('wrong');
-               cols[i].removeEventListener('click',mostraSelezioni);  
-               cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
-               cols.item(correctAnswerPosition_inDom).classList.add('right');
-               //timing function per azzerare i valori
+                for (let i = 0; i < cols.length; i++) {
+                    cols[i].classList.add('none');
+                }
+                next.classList.add('none');
+                question_number.classList.add('none');
+                start_panel.classList.remove('none');
+                alert('Complimenti sei arrivato all fine del gioco!');
             }
+            
         }
     }
 
