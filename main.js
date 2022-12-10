@@ -160,13 +160,13 @@ const keys = [
         if (this.innerText == correctAnswer) {  
             setTimeout(function() {
                 
-                if (questionNumber < 3) {
+                if (questionNumber < 10) {
                     question_panel.classList.add('none');
                     next.classList.remove('none');
                     next.addEventListener('click',prossimaDomanda);
                     questionNumber++;
                     next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
-                } else if (questionNumber > 2) {
+                } else if (questionNumber > 9) {
                     terminaGioco();
                 }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
@@ -182,7 +182,7 @@ const keys = [
            this.classList.add('right');
 
         } else if (this.innerText != correctAnswer) {  
-            if (questionNumber < 3) {
+            if (questionNumber < 10) {
                 setTimeout(function() {
                     question_panel.classList.add('none');
                     next.classList.remove('none');
@@ -196,7 +196,7 @@ const keys = [
                    cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
                    cols.item(correctAnswerPosition_inDom).classList.add('right');
                 }
-            } else if (questionNumber > 2) {
+            } else if (questionNumber > 9) {
                 for (let i = 0; i < cols.length; i++) {
                     cols[i].classList.add('wrong');
                     cols[i].removeEventListener('click',mostraSelezioni);  
