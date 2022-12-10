@@ -17,6 +17,8 @@ const keys = [
     const question_panel = document.getElementById('question_panel');
     const question_number = document.getElementById('question_number');
     const next = document.getElementById('next');
+    const popup = document.getElementById('alert');
+    const reset = document.getElementById('reset');
     let numeri_casuali = [];
     let interval = [];
     let correctAnswerPosition;
@@ -29,6 +31,7 @@ const keys = [
     //LOGICA APPLICATIVA
 
     document.getElementById('start_btn').addEventListener("click",play);
+
     
     function play() {
 
@@ -72,38 +75,31 @@ const keys = [
         if (key == 1) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][1]}?</h3>`;
             correctAnswer = keys[0][parseInt(interval[0])];
-            correctAnswerPosition = keys[0].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[0].indexOf(correctAnswer);
         } else if (key == 2) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][2]}?</h3>`;
             correctAnswer = keys[1][parseInt(interval[0])];
-            correctAnswerPosition = keys[1].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[1].indexOf(correctAnswer);
         } else if (key == 3) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][3]}?</h3>`;
             correctAnswer = keys[2][parseInt(interval[0])];
-            correctAnswerPosition = keys[2].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[2].indexOf(correctAnswer);
         } else if (key == 4) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][4]}?</h3>`;
             correctAnswer = keys[3][parseInt(interval[0])];
-            correctAnswerPosition = keys[3].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[3].indexOf(correctAnswer);
         } else if (key == 5) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][5]}?</h3>`;
             correctAnswer = keys[4][parseInt(interval[0])];
-            correctAnswerPosition = keys[4].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[4].indexOf(correctAnswer);
         } else if (key == 6) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][6]}?</h3>`;
             correctAnswer = keys[5][parseInt(interval[0])];
-            correctAnswerPosition = keys[5].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[5].indexOf(correctAnswer);
         } else if (key == 7) {
             question_panel.innerHTML = `<h3>Qual è la ${interval[0]} di ${keys[0][7]}?</h3>`;
             correctAnswer = keys[6][parseInt(interval[0])];
-            correctAnswerPosition = keys[6].indexOf(correctAnswer); 
-            console.log(correctAnswer);
+            correctAnswerPosition = keys[6].indexOf(correctAnswer);
         }   
     }
   
@@ -160,7 +156,6 @@ const keys = [
     function mostraSelezioni() {
 
         correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
-        console.log(questionNumber);
     
         if (this.innerText == correctAnswer) {  
             setTimeout(function() {
@@ -172,14 +167,7 @@ const keys = [
                     questionNumber++;
                     next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
                 } else if (questionNumber > 2) {
-                    question_panel.classList.add('none');
-                    for (let i = 0; i < cols.length; i++) {
-                        cols[i].classList.add('none');
-                    }
-                    next.classList.add('none');
-                    question_number.classList.add('none');
-                    start_panel.classList.remove('none');
-                    alert('Complimenti sei arrivato all fine del gioco!');            
+                    terminaGioco();
                 }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
                 //il valore di score sia inferiore di 20
@@ -193,7 +181,7 @@ const keys = [
            this.classList.remove('wrong');
            this.classList.add('right');
 
-        } else {  
+        } else if (this.innerText != correctAnswer) {  
             if (questionNumber < 3) {
                 setTimeout(function() {
                     question_panel.classList.add('none');
@@ -209,14 +197,13 @@ const keys = [
                    cols.item(correctAnswerPosition_inDom).classList.add('right');
                 }
             } else if (questionNumber > 2) {
-                question_panel.classList.add('none');
                 for (let i = 0; i < cols.length; i++) {
-                    cols[i].classList.add('none');
+                    cols[i].classList.add('wrong');
+                    cols[i].removeEventListener('click',mostraSelezioni);  
+                    cols.item(correctAnswerPosition_inDom).classList.remove('wrong');
+                    cols.item(correctAnswerPosition_inDom).classList.add('right');
                 }
-                next.classList.add('none');
-                question_number.classList.add('none');
-                start_panel.classList.remove('none');
-                alert('Complimenti sei arrivato all fine del gioco!');
+                terminaGioco();
             }
             
         }
@@ -250,6 +237,24 @@ const keys = [
             cols[i].addEventListener('click', mostraSelezioni);
         }
 
+    }
+
+    function terminaGioco() {
+        setTimeout(function() {
+            question_panel.classList.add('none');
+            for (let i = 0; i < cols.length; i++) {
+                cols[i].classList.add('none');
+            }
+            next.classList.add('none');
+            question_number.classList.add('none');
+            start_panel.classList.add('none');
+            setTimeout(function() {
+                popup.classList.remove('none');
+                reset.addEventListener('click', function() {
+                    location.reload();
+                });
+            },400);
+        },1000);   
     }
 
 

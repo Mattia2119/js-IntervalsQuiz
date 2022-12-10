@@ -60,7 +60,7 @@ main {
     width: 100%;
 }
 .question-cnt {
-    height: 20%;
+    height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -82,7 +82,17 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+#alert {
+    background-color: darkgrey;
+    border-radius: 3%;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .col {
     border: 1px solid white;
