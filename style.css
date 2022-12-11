@@ -94,6 +94,9 @@ main {
     justify-content: center;
     flex-direction: column;
 }
+#errors {
+    margin-bottom: 20px;
+}
 .col {
     border: 1px solid white;
     height: 80%;

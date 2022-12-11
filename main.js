@@ -19,6 +19,7 @@ const keys = [
     const next = document.getElementById('next');
     const popup = document.getElementById('alert');
     const reset = document.getElementById('reset');
+    const errors = document.getElementById('errors');
     let numeri_casuali = [];
     let interval = [];
     let correctAnswerPosition;
@@ -27,6 +28,7 @@ const keys = [
     let key;
     let currentKey;
     let questionNumber = 1;
+    let right_answers_total = 0;
       
     //LOGICA APPLICATIVA
 
@@ -166,7 +168,9 @@ const keys = [
                     next.addEventListener('click',prossimaDomanda);
                     questionNumber++;
                     next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
+                    right_answers_total ++;
                 } else if (questionNumber > 19) {
+                    right_answers_total ++;
                     terminaGioco();
                 }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
@@ -250,6 +254,8 @@ const keys = [
             start_panel.classList.add('none');
             setTimeout(function() {
                 popup.classList.remove('none');
+                errors.classList.remove('none');
+                errors.innerHTML = `Hai indovinato ${right_answers_total} risposte su 20`;
                 reset.addEventListener('click', function() {
                     location.reload();
                 });
