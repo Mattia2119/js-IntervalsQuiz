@@ -168,9 +168,9 @@ const keys = [
                     next.addEventListener('click',prossimaDomanda);
                     questionNumber++;
                     next.addEventListener('click', function(){ question_number.innerHTML = `${questionNumber}/20`});
-                    right_answers_total ++;
+                    right_answers_total = right_answers_total + 1;
                 } else if (questionNumber > 19) {
-                    right_answers_total ++;
+                    right_answers_total = right_answers_total +1;
                     terminaGioco();
                 }
                 //qui devo far apparire un button che faccia ripartire tutto a condizione che 
