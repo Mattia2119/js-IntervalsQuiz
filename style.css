@@ -50,6 +50,49 @@ header {
     justify-content: center;
 }
 
+/*Media Query*/
+     /* Regole per il rendering responsive */
+
+        /* Stili per schermi di larghezza inferiore a 600px */
+        @media (max-width: 600px) {
+            .select_cnt {
+                flex-direction: column;
+                align-items: center;
+            }
+            .row-cnt {
+                flex-direction: column;
+                align-items: center;
+            }
+            .col {
+                width: 100%;
+            }
+        }
+
+        /* Stili per schermi di larghezza compresa tra 601px e 900px */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .question-cnt {
+                flex-direction: column;
+                align-items: center;
+            }
+            .col {
+                width: 50%;
+            }
+        }
+
+        /* Stili per schermi di larghezza superiore a 900px */
+        @media (min-width: 901px) {
+            .quiz-cnt {
+                display: flex;
+                justify-content: space-between;
+            }
+            .question-cnt {
+                width: 60%;
+            }
+            .answer-cnt {
+                width: 35%;
+            }
+        }
+
 /*Main*/
 main {
     height: 80vh;
