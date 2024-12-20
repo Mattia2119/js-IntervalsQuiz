@@ -40,7 +40,8 @@ function play() {
     currentKey = key;
 
     cols.forEach((col) => {
-        col.addEventListener('click', mostraSelezioni);
+        col.addEventListener('touchstart', mostraSelezioni); // Supporto per dispositivi mobili
+        col.addEventListener('click', mostraSelezioni); // Supporto per desktop
     });
 }
 
@@ -79,7 +80,7 @@ function generaRows(correctAnswerPosition, key) {
 function mostraSelezioni() {
     correctAnswerPosition_inDom = numeri_casuali.indexOf(correctAnswerPosition);
 
-    if (this.innerText === correctAnswer) {  
+    if (this.textContent.trim() === correctAnswer) {  // Uso di textContent per una compatibilità migliore
         this.classList.add('right');
         right_answers_total++;
     } else {
@@ -89,6 +90,7 @@ function mostraSelezioni() {
 
     cols.forEach((col) => {
         col.removeEventListener('click', mostraSelezioni);
+        col.removeEventListener('touchstart', mostraSelezioni);
         if (!col.classList.contains('right')) {
             col.classList.add('wrong');
         }
@@ -123,6 +125,7 @@ function nextDomanda() {
     generaRows(correctAnswerPosition, key);
 
     cols.forEach((col) => {
+        col.addEventListener('touchstart', mostraSelezioni);
         col.addEventListener('click', mostraSelezioni);
     });
 }
