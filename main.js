@@ -112,22 +112,29 @@ function nextDomanda() {
     cols.forEach((col) => {
         col.innerHTML = '';
         col.classList.remove('right', 'wrong', 'none');
+        col.classList.add('reset'); // Applica la classe per resettare lo stile
     });
 
-    key = currentKey;
-    question_panel.innerHTML = '';
-    numeri_casuali = [];
-    interval = [];
-    correctAnswer = '';
-    correctAnswerPosition = 0;
+    setTimeout(() => { // Timeout per garantire un reset visivo fluido
+        cols.forEach((col) => {
+            col.classList.remove('reset'); // Rimuove la classe reset dopo il refresh
+        });
 
-    generaDomande(key);
-    generaRows(correctAnswerPosition, key);
+        key = currentKey;
+        question_panel.innerHTML = '';
+        numeri_casuali = [];
+        interval = [];
+        correctAnswer = '';
+        correctAnswerPosition = 0;
 
-    cols.forEach((col) => {
-        col.addEventListener('touchstart', mostraSelezioni);
-        col.addEventListener('click', mostraSelezioni);
-    });
+        generaDomande(key);
+        generaRows(correctAnswerPosition, key);
+
+        cols.forEach((col) => {
+            col.addEventListener('touchstart', mostraSelezioni);
+            col.addEventListener('click', mostraSelezioni);
+        });
+    }, 200); // Tempo sufficiente per il reset visivo
 }
 
 function terminaGioco() {
