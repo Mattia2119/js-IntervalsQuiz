@@ -37,6 +37,11 @@ a:hover {
     background-color: red!important;
 }
 
+.reset {
+    background-color: grey !important; /* Reset esplicito del colore */
+    cursor: default; /* Rimuove il puntatore */
+}
+
 /*Header*/
 header {
     height: 10%;
@@ -63,18 +68,9 @@ header {
                 flex-direction: column;
                 align-items: center;
             }
-            @media (max-width: 600px) {
             .col {
                 width: 100%;
-                height: auto; /* Assicurati che si adatti in altezza */
             }
-            .col.right {
-                background-color: green!important;
-            }
-            .col.wrong {
-                background-color: red!important;
-            }
-}
         }
 
         /* Stili per schermi di larghezza compresa tra 601px e 900px */
@@ -157,10 +153,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s; /* Per una transizione fluida */
 }
 
 .col:hover {
-    background-color:darkgrey;
+    background-color: darkgrey;
     cursor: pointer;
 }
 
