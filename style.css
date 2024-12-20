@@ -156,10 +156,10 @@ main {
     transition: background-color 0.3s; /* Per una transizione fluida */
 }
 
-.col:hover {
+/*.col:hover {
     background-color: darkgrey;
     cursor: pointer;
-}
+}*/
 
 
 .questions_panel {
